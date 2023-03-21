@@ -12,6 +12,7 @@ import com.nitin.employeeservice.dto.EmployeeDto;
 import com.nitin.employeeservice.entiry.Employee;
 import com.nitin.employeeservice.exception.ResourceNotFoundException;
 import com.nitin.employeeservice.repository.EmployeeRepository;
+import com.nitin.employeeservice.service.APIClient;
 import com.nitin.employeeservice.service.EmployeeService;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +27,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	//RestTemplate restTemplate;
 
-	WebClient webClient;
+	// WebClient webClient;
+	
+	  APIClient apiClient;
 	
 	@Override
 	public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
@@ -55,11 +58,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 //		
 //		DepartmentDto departmentDto = departmentResponseEntity.getBody();
 //		
-		DepartmentDto departmentDto =webClient.get()
-		.uri("http://localhost:8080/api/departments/"+employeeDto.getDepartmentCode()+"")
-		.retrieve()
-		.bodyToMono(DepartmentDto.class)
-		.block();
+		
+		/*
+		 * DepartmentDto departmentDto =webClient.get()
+		 * .uri("http://localhost:8080/api/departments/"+employeeDto.getDepartmentCode()
+		 * +"") .retrieve() .bodyToMono(DepartmentDto.class) .block();
+		 */
+		
+		DepartmentDto departmentDto  = apiClient.getDepartmentByCode(employeeDto.getDepartmentCode() );
 		
 		ApiResponseDto dto = new ApiResponseDto();
 		
