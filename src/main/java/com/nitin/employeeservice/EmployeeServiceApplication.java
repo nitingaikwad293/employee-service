@@ -24,7 +24,7 @@ public class EmployeeServiceApplication {
 	/*
 	 * @Bean public RestTemplate getRestTemplate() { return new RestTemplate(); }
 	 */
-	/*
-	 * @Bean public WebClient getWebClient() { return WebClient.builder().build(); }
-	 */
+	
+	  @Bean public WebClient getWebClient() { return WebClient.builder().build(); }
+	 
 }
